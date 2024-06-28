@@ -1,0 +1,7 @@
+{
+  "name": "hivelogger",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue-vite"
+}
