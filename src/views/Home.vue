@@ -2,7 +2,7 @@
   <ion-page>
     <h1>Hive Logger</h1>
     <ion-button router-link="/apiary/1">Apiary-1</ion-button>
-    <ion-button router-link="/apiary/1/new">New Apiary</ion-button>
+    <ion-button router-link="/apiary/new">New Apiary</ion-button>
   </ion-page>
 </template>
 

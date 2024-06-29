@@ -1,7 +1,7 @@
 <template>
     <h1>New Apiary</h1>
     <ion-page>
-      <ion-button href="/apiary/1">Apiary-1</ion-button>
+      <ion-button href="/apiary/1">Create Apiary</ion-button>
     </ion-page>
   </template>
   

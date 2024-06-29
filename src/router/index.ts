@@ -21,31 +21,31 @@ const routes: Array<RouteRecordRaw> = [
     component: Home,
   },
   {
-    path: '/apiary/1',
+    path: '/apiary/:apiary',
     component: Apiary,
   },
   {
-    path: '/apiary/1/colony/1',
+    path: '/apiary/:apiary/colony/:colony',
     component: Colonly,
   },
   {
-    path: '/apiary/1/colony/1/queen/1',
+    path: '/apiary/:apiary/colony/:colony/queen/:queen',
     component: Queen
   },
   {
-    path: '/apiary/1/colony/1/queen/new',
+    path: '/apiary/:apiary/colony/:colony/queen/new',
     component: NewQueen
   },
   {
-    path: '/apiary/1/colony/1/visit/1',
+    path: '/apiary/:apiary/colony/:colony/visit/:visit',
     component: Visit
   },
   {
-    path: '/apiary/1/colony/1/visit/new',
+    path: '/apiary/:apiary/colony/:colony/visit/new',
     component: NewVisit
   },
   {
-    path: '/apiary/1/colony/new',
+    path: '/apiary/:apiary/colony/new',
     component: NewColony
   },
   {
