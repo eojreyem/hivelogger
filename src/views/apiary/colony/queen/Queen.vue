@@ -1,6 +1,7 @@
 <template>
     <ion-page>
-        <ion-button href="/apiary/1/colony/1">Colony-1</ion-button>
+      <h1>Queen</h1>
+      <ion-button href="/apiary/1/colony/1">Colony-1</ion-button>
     </ion-page>
   </template>
   

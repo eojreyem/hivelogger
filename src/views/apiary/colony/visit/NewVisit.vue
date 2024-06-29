@@ -1,5 +1,6 @@
 <template>
     <ion-page>
+        <h1>New Visit</h1>
         <ion-button href="/apiary/1/colony/1">Colony-1</ion-button>
     </ion-page>
   </template>
