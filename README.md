@@ -4,7 +4,7 @@ A sticky-finger friendly UI.
 
 # getting up and running
 1. Clone the repo
-2. Run <ionic capacitor build>
+2. Run 'ionic capacitor build'
 3. Open the android directory in Android Studio
 
 Since I'm developing in WSL2 I needed to follow these instructions to run on my Android phone.
