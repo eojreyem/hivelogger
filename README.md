@@ -7,7 +7,7 @@ A sticky-finger friendly UI.
 2. Run 'ionic capacitor build'
 3. Open the android directory in Android Studio
 
-Since I'm developing in WSL2 I needed to follow these instructions to run on my Android phone.
+Since I'm developing in WSL2 I needed to follow these instructions to run on my Android phone. Make sure you are on Windows 11 in order to support nested virtualization. 
 https://learn.microsoft.com/en-us/windows/wsl/connect-usb#attach-a-usb-device
 
 
