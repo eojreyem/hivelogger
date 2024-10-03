@@ -4,6 +4,7 @@
     <option name="MigrateToGradleLocalJavaHome">
       <set>
         <option value="/run/media/andy/057ca0bc-52c7-4cef-a3ec-75d0de835074/home/andy/projects/off-peak/hivelogger/android" />
+        <option value="$PROJECT_DIR$" />
       </set>
     </option>
   </component>
