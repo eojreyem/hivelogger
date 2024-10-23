@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from '@ionic/vue-router';
 import { RouteRecordRaw } from 'vue-router';
-import TabsPage from '../views/TabsPage.vue'
 import Home from '@/views/Home.vue';
 import Apiary from '@/views/apiary/Apiary.vue';
 import Colonly from '@/views/apiary/colony/Colonly.vue';
@@ -12,10 +11,6 @@ import NewColony from '@/views/apiary/colony/NewColony.vue';
 import NewApiary from '@/views/apiary/NewApiary.vue';
 
 const routes: Array<RouteRecordRaw> = [
-  // {
-  //   path: '/',
-  //   redirect: '/tabs/tab1'
-  // },
   {
     path: '/',
     component: Home,
@@ -51,28 +46,6 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/apiary/new',
     component: NewApiary
-  },
-  {
-    path: '/tabs/',
-    component: TabsPage,
-    children: [
-      {
-        path: '',
-        redirect: '/tabs/tab1'
-      },
-      {
-        path: 'tab1',
-        component: () => import('@/views/Tab1Page.vue')
-      },
-      {
-        path: 'tab2',
-        component: () => import('@/views/Tab2Page.vue')
-      },
-      {
-        path: 'tab3',
-        component: () => import('@/views/Tab3Page.vue')
-      }
-    ]
   }
 ]
 
