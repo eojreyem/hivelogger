@@ -2,46 +2,49 @@ import { createRouter, createWebHistory } from '@ionic/vue-router';
 import { RouteRecordRaw } from 'vue-router';
 import Home from '@/views/Home.vue';
 import Apiary from '@/views/apiary/Apiary.vue';
-import Colonly from '@/views/apiary/colony/Colonly.vue';
-import Queen from '@/views/apiary/colony/queen/Queen.vue';
-import NewQueen from '@/views/apiary/colony/queen/NewQueen.vue';
-import Visit from '@/views/apiary/colony/visit/Visit.vue';
-import NewVisit from '@/views/apiary/colony/visit/NewVisit.vue';
-import NewColony from '@/views/apiary/colony/NewColony.vue';
+import Hive from '@/views/apiary/hive/Hive.vue';
+import Queen from '@/views/apiary/hive/queen/Queen.vue';
+import NewQueen from '@/views/apiary/hive/queen/NewQueen.vue';
+import Visit from '@/views/apiary/hive/visit/Visit.vue';
+import NewVisit from '@/views/apiary/hive/visit/NewVisit.vue';
+import NewHive from '@/views/apiary/hive/NewHive.vue';
 import NewApiary from '@/views/apiary/NewApiary.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    component: Home,
+    name: 'Home',
+    component: Home
   },
   {
-    path: '/apiary/:apiary',
+    path: '/apiary/:id',
+    name: 'Apiary',
     component: Apiary,
+    props: true // This allows the route params to be passed as props to the component
   },
   {
-    path: '/apiary/:apiary/colony/:colony',
-    component: Colonly,
+    path: '/apiary/:apiaryId/hive/:hiveId',
+    component: Hive,
   },
   {
-    path: '/apiary/:apiary/colony/:colony/queen/:queen',
+    path: '/apiary/:apiaryId/hive/:hiveId/queen/:queenId',
     component: Queen
   },
   {
-    path: '/apiary/:apiary/colony/:colony/queen/new',
+    path: '/apiary/:apiaryId/hive/:hiveId/queen/new',
     component: NewQueen
   },
   {
-    path: '/apiary/:apiary/colony/:colony/visit/:visit',
+    path: '/apiary/:apiaryId/hive/:hiveId/visit/:visitId',
     component: Visit
   },
   {
-    path: '/apiary/:apiary/colony/:colony/visit/new',
+    path: '/apiary/:apiaryId/hive/:hiveId/visit/new',
     component: NewVisit
   },
   {
-    path: '/apiary/:apiary/colony/new',
-    component: NewColony
+    path: '/apiary/:apiaryId/hive/new',
+    component: NewHive
   },
   {
     path: '/apiary/new',
