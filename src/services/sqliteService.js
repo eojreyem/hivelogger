@@ -12,6 +12,7 @@ export class SqliteService {
                 name: 'hivelogger.db',
                 location: 'default'
             });
+            // await this.deleteAllTables();
             await this.createTables();
         } catch (error) {
             console.error('Unable to open database', error);
@@ -28,6 +29,23 @@ export class SqliteService {
       `, []);
         } catch (error) {
             console.error('Unable to create tables', error);
+        }
+    }
+
+    async deleteAllTables() {
+        try {
+            // Get all table names
+            const res = await this.dbInstance.executeSql("SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'", []);
+            
+            // Drop each table
+            for (let i = 0; i < res.rows.length; i++) {
+                const tableName = res.rows.item(i).name;
+                await this.dbInstance.executeSql(`DROP TABLE IF EXISTS ${tableName}`, []);
+            }
+            
+            console.log('All tables deleted successfully');
+        } catch (error) {
+            console.error('Unable to delete tables', error);
         }
     }
 
