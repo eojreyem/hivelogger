@@ -24,7 +24,7 @@
 
 <script lang="ts">
 import { IonButton, IonContent, IonHeader, IonItem, IonList, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
-import { defineComponent, ref, onMounted } from 'vue';
+import { defineComponent, ref, onMounted, onActivated } from 'vue';
 import { useRoute } from 'vue-router';
 import { SqliteService } from '@/services/sqlite_service';
 
@@ -39,12 +39,14 @@ export default defineComponent({
     const apiary = ref({});
     const sqlite_service = new SqliteService();
 
-    onMounted(async () => {
+    const fetchData = async () => {
       await sqlite_service.initDB();
       hives.value = await sqlite_service.getHivesInApiaryById(apiaryId.value);
-      // Fetch apiary details
       apiary.value = await sqlite_service.getApiaryById(apiaryId.value);
-    });
+    };
+
+    onMounted(fetchData);
+    onActivated(fetchData);
 
     return { hives, apiary, apiaryId };
   },

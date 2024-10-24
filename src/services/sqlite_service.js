@@ -12,7 +12,6 @@ export class SqliteService {
                 name: 'hivelogger.db',
                 location: 'default'
             });
-            // await this.deleteAllTables();
             await this.createTables();
         } catch (error) {
             console.error('Unable to open database', error);
