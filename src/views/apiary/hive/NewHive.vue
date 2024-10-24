@@ -10,13 +10,10 @@
     </ion-header>
     <ion-content class="ion-padding">
       <ion-item>
-        <ion-label position="floating">Hive Number</ion-label>
+        <ion-label position="floating">Entire Unique Tag Number</ion-label>
         <ion-input v-model="newHiveNumber" type="number" placeholder="Enter hive number"></ion-input>
       </ion-item>
       <ion-button expand="block" @click="addHive" class="ion-margin-top">Create Hive</ion-button>
-      <ion-item>
-        <ion-label>Apiary ID: {{ apiaryId }}</ion-label>
-      </ion-item>
     </ion-content>
   </ion-page>
 </template>
@@ -40,7 +37,7 @@ export default defineComponent({
         try {
           const sqliteService = new SqliteService();
           await sqliteService.initDB();
-          await sqliteService.addHive(Number(apiaryId.value), Number(newHiveNumber.value));
+          await sqliteService.hiveService.addHive(Number(apiaryId.value), Number(newHiveNumber.value));
           
           console.log(`Hive number ${newHiveNumber.value} was successfully added to apiary ${apiaryId.value}`);
           newHiveNumber.value = '';

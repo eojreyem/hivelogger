@@ -23,6 +23,7 @@
 import { IonButton, IonContent, IonHeader, IonItem, IonList, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
 import { defineComponent, ref, onMounted, onActivated } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
+// Import the specific functions from apiary_service.js
 import { SqliteService } from '@/services/sqlite_service';
 
 export default defineComponent({
@@ -35,12 +36,11 @@ export default defineComponent({
     const apiaryId = ref(Number(route.params.id));
     const hives = ref([]);
     const apiary = ref({});
-    const sqlite_service = new SqliteService();
-
+    const sqliteService = new SqliteService();
     const fetchData = async () => {
-      await sqlite_service.initDB();
-      hives.value = await sqlite_service.getHivesInApiaryById(apiaryId.value);
-      apiary.value = await sqlite_service.getApiaryById(apiaryId.value);
+      await sqliteService.initDB();
+      hives.value = await sqliteService.apiaryService.getHivesInApiaryById(apiaryId.value);
+      apiary.value = await sqliteService.apiaryService.getApiaryById(apiaryId.value);
     };
 
     onMounted(fetchData);

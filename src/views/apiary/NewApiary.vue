@@ -21,7 +21,7 @@
   <script lang="ts">
   import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonLabel, IonInput, IonButton, IonBackButton, IonButtons } from '@ionic/vue';
 import { defineComponent } from 'vue';
-import { SqliteService } from '@/services/sqlite_service';
+import { ApiaryService } from '@/services/apiary_service';
 
 export default defineComponent({
   components: { IonButton, IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonLabel, IonInput, IonBackButton, IonButtons },
@@ -34,9 +34,8 @@ export default defineComponent({
     async addApiary() {
       if (this.newApiaryName.trim()) {
         try {
-          const sqliteService = new SqliteService();
-          await sqliteService.initDB();
-          await sqliteService.addApiary(this.newApiaryName);
+          const apiaryService = new ApiaryService();
+          await apiaryService.addApiary(this.newApiaryName);
           this.newApiaryName = '';
           // Optionally, you can add a success message or redirect to the home page
           this.$router.push('/');

@@ -33,6 +33,7 @@
 import { defineComponent, ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { IonButton, IonPage, IonItem, IonList, IonContent, IonHeader, IonToolbar, IonTitle, IonCard, IonCardHeader, IonCardTitle, IonCardContent } from '@ionic/vue';
+
 import { SqliteService } from '@/services/sqlite_service';
 
 export default defineComponent({
@@ -40,24 +41,21 @@ export default defineComponent({
   setup() {
     const router = useRouter();
     const apiaries = ref([]);
-    const sqlite_service = ref<SqliteService | null>(null);
+    const sqliteService = new SqliteService();
 
     const goToApiary = (apiaryId: number) => {
       router.push(`/apiary/${apiaryId}`);
     };
 
     onMounted(async () => {
-      sqlite_service.value = new SqliteService();
-      await sqlite_service.value.initDB();
-      apiaries.value = await sqlite_service.value.getApiaries();
+      await sqliteService.initDB();
+      apiaries.value = await sqliteService.apiaryService.getApiaries();
     });
 
     const deleteTables = async () => {
-      if (sqlite_service.value) {
-        await sqlite_service.value.deleteAllTables();
-        // Refresh the apiaries list after deleting tables
-        apiaries.value = await sqlite_service.value.getApiaries();
-      }
+      await sqliteService.deleteAllTables();
+      // Refresh the apiaries list after deleting tables
+      apiaries.value = await sqliteService.apiaryService.getApiaries();
     };
 
     return {
