@@ -12,7 +12,7 @@
             <ion-card-title>{{ apiary.name }}</ion-card-title>
           </ion-card-header>
           <ion-card-content>
-            <ion-button :router-link="`/apiary/${apiary.id}`">Hives</ion-button>
+            <ion-button @click="goToApiary(apiary.id)">Hives</ion-button>
           </ion-card-content>
         </ion-card>
       </ion-list>
@@ -30,31 +30,41 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, ref, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
 import { IonButton, IonPage, IonItem, IonList, IonContent, IonHeader, IonToolbar, IonTitle, IonCard, IonCardHeader, IonCardTitle, IonCardContent } from '@ionic/vue';
 import { SqliteService } from '@/services/sqlite_service';
 
 export default defineComponent({
   components: { IonButton, IonPage, IonItem, IonList, IonContent, IonHeader, IonToolbar, IonTitle, IonCard, IonCardHeader, IonCardTitle, IonCardContent },
-  data() {
-    return {
-      apiaries: [],
-      sqlite_service: null as SqliteService | null,
+  setup() {
+    const router = useRouter();
+    const apiaries = ref([]);
+    const sqlite_service = ref<SqliteService | null>(null);
+
+    const goToApiary = (apiaryId: number) => {
+      router.push(`/apiary/${apiaryId}`);
     };
-  },  
-  async mounted() {
-    this.sqlite_service = new SqliteService();
-    await this.sqlite_service.initDB();
-    this.apiaries = await this.sqlite_service.getApiaries();
-  },
-  methods: {
-    async deleteTables() {
-      if (this.sqlite_service) {
-        await this.sqlite_service.deleteAllTables();
+
+    onMounted(async () => {
+      sqlite_service.value = new SqliteService();
+      await sqlite_service.value.initDB();
+      apiaries.value = await sqlite_service.value.getApiaries();
+    });
+
+    const deleteTables = async () => {
+      if (sqlite_service.value) {
+        await sqlite_service.value.deleteAllTables();
         // Refresh the apiaries list after deleting tables
-        this.apiaries = await this.sqlite_service.getApiaries();
+        apiaries.value = await sqlite_service.value.getApiaries();
       }
-    },
+    };
+
+    return {
+      apiaries,
+      deleteTables,
+      goToApiary,
+    };
   },
 });
 </script>

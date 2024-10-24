@@ -24,7 +24,9 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/apiary/:apiaryId/hive/:hiveId',
+    name: 'Hive',
     component: Hive,
+    props: true // This allows the route params to be passed as props to the component
   },
   {
     path: '/apiary/:apiaryId/hive/:hiveId/queen/:queenId',
