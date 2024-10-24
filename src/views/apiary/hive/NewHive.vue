@@ -10,8 +10,8 @@
     </ion-header>
     <ion-content class="ion-padding">
       <ion-item>
-        <ion-label position="floating">Entire Unique Tag Number</ion-label>
-        <ion-input v-model="newHiveNumber" type="number" placeholder="Enter hive number"></ion-input>
+        <ion-label position="">Tag Number</ion-label>
+        <ion-input v-model="newHiveNumber" type="number" placeholder="Enter unique tag number"></ion-input>
       </ion-item>
       <ion-button expand="block" @click="addHive" class="ion-margin-top">Create Hive</ion-button>
     </ion-content>
